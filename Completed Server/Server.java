@@ -117,6 +117,7 @@ public class server
         static String answer="";
         static String cracked;
 
+		// Cracker credit goes to: https://sinister.ly/Thread-JAVA-MD5-Bruteforcer
         public static void cracker(String cracking)
         {
             char ar[]={ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
