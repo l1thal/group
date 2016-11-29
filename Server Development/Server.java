@@ -31,7 +31,7 @@ public class server
             System.out.println("Server Started and listening to the port 25000\n");
  
             //Server is running always. This is done using this while(true) loop
-            while(true)
+            do
             {
 
                 //Reading the message from the client
@@ -68,15 +68,6 @@ public class server
                     System.out.println("Message sent to client: "+ sending_2);
                     bw.flush();
                     cracker(tobecracked);
-                } else if(message.equals("register")){
-                    OutputStream os = socket.getOutputStream();
-                    OutputStreamWriter osw = new OutputStreamWriter(os);
-                    BufferedWriter bw = new BufferedWriter(osw);
-                    String sending = "Please enter your desired username:";
-                    String sending_2 = sending + "\n";
-                    bw.write(sending_2);
-                    System.out.println("Message sent to client: "+ sending_2);
-                    bw.flush();
                 } else if(message.equals("waiting")) {
                 	while(crackStatus = false) {
                 		checkcrackstatus();
@@ -84,13 +75,22 @@ public class server
                 	OutputStream os = socket.getOutputStream();
                     OutputStreamWriter osw = new OutputStreamWriter(os);
                     BufferedWriter bw = new BufferedWriter(osw);
-                    String sending = cracked;
+                    String sending = "UnHashed Text: " + cracked;
+                    String sending_2 = sending + "\n";
+                    bw.write(sending_2);
+                    System.out.println("Message sent to client: "+ sending_2);
+                    bw.flush();
+                } else {
+                	OutputStream os = socket.getOutputStream();
+                    OutputStreamWriter osw = new OutputStreamWriter(os);
+                    BufferedWriter bw = new BufferedWriter(osw);
+                    String sending = "Please choose a valid option.";
                     String sending_2 = sending + "\n";
                     bw.write(sending_2);
                     System.out.println("Message sent to client: "+ sending_2);
                     bw.flush();
                 }
-            }
+            } while (true);
         }
         catch (Exception e)
         {

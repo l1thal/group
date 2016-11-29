@@ -13,10 +13,40 @@ public class client
  
     private static Socket socket;
     
-    static int availability = 0;
+    static double availability = 0;
     static String md5;
     
     public static void main(String args[]) {
+    	
+    	System.out.println("Hello, Switch statement.");
+    	int testingSwitch = 3;
+    	
+    	switch(testingSwitch) {
+    		case 1: testingSwitch = 1; {
+    			System.out.println("This is the first option");
+    		}
+    		case 2: testingSwitch = 2; {
+    			System.out.println("This is the second option");
+    		}
+    		case 3: testingSwitch = 3; {
+    			System.out.println("This is the third option.");
+    		}
+    	}
+    	
+    	System.out.println("Hello, multi-deminsional array.");
+    	
+    	int[][] multiDArray = new int[2][2];
+    	multiDArray[0][0] = 1;
+    	multiDArray[0][1] = 2;
+    	multiDArray[1][0] = 3;
+    	multiDArray[1][1] = 4;
+    	
+    	System.out.println("The bottom right position in the multi-deminsional array 'multiDArray' has the value of: " + multiDArray[1][1]);
+    	
+    	int random = (int) (Math.random() * 10) + 0;
+    	System.out.println("Here is a random number using a built-in math function: " + random);
+    	
+    	
     	
     	System.out.println("Making connection to server...");
     	connect("connection test");
@@ -27,24 +57,24 @@ public class client
     		System.out.println("Connection failed.");
     	}
     	
-    	
+
     }
     
     public static void next() {
     	
     	Scanner scanner = new Scanner(System.in);
     	
-    	System.out.println("\nOptions: (Type a number to select an option)\n1. MD5 Un-Hasher\n2. Register");
-    	int input = scanner.nextInt();
-    	scanner.nextLine();
+    	System.out.println("\nOptions: (Type a number to select an option)\n1. MD5 Un-Hasher");
+    	String input = scanner.nextLine();
     	
-    	if(input == 1) {
+    	if(input.equals("1")) {
     		System.out.println("\n(Encrypted text must be under 4 characters)\nEnter MD5 Hash:");
         	Scanner sc = new Scanner(System.in);
         	md5 = sc.nextLine();
         	connect(md5);
-    	} else if(input == 2) {
-    		connect("register");
+    	} else if (input.equals("")) {
+    		System.out.println("Please choose a valid option.");
+    		next();
     	} else {
     		System.out.println("Please choose a valid option.\n");
     		next();
@@ -93,6 +123,7 @@ public class client
             	waitingoncrack();
             } else {
             	System.out.println(message);
+            	next();
             }
         }
         catch (Exception exception)
